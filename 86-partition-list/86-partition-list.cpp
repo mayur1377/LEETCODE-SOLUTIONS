@@ -11,30 +11,17 @@
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-//the worst solution 
-vector<int>less , more;
-ListNode* temp=head;
+ListNode *less=new ListNode(0) , *more=new ListNode(0);
+ListNode* front=less , *back=more , *temp=head;
 while(temp)
 {
-    if(temp->val<x) less.push_back(temp->val);
-    else more.push_back(temp->val);
+    if(temp->val<x) front->next=temp , front=temp;
+    else back->next=temp , back=temp;
     temp=temp->next;
 }
-int n=less.size();
-temp=head;
-int i=0;
-while(n-- and temp)
-{
-    temp->val=less[i++];
-    temp=temp->next;
-}
-i=0;
-n=more.size();
-while(n-- and temp)
-{
-    temp->val=more[i++];
-    temp=temp->next;
-}
-        return head;
+front->next=more->next;
+back->next=NULL;
+head=less->next;
+return head;
     }
 };
