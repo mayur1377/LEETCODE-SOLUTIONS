@@ -2,50 +2,43 @@ class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
 vector<int>ans;
-if(nums.size()<=1)
+cout<<nums.size();
+if(nums.size()<1)
 {
-    if(nums.size()==0)
+    if(nums.size()==0) 
     {
         ans={-1 , -1};
         return ans;
     }
-    if(nums.size()==1)
-    {
-        nums[0]==target?ans={0 , 0} : ans={-1 , -1};
-        return ans;
-    }
+     if(nums[0]==target) ans={0 , 0 } ;
+     else if(nums[1]==target) ans={1 , 1};
+    else ans={-1 , -1};
+    return ans;
 }
-int mid;
-int i=0 , j=nums.size()-1;
-int flag=0;
+int i=0 ,j=nums.size()-1;
+int pos=-1;
 while(i<=j)
 {
-    mid=(i+j)/2;
+    int mid=(i+j)/2;
     if(nums[mid]==target)
     {
-        flag=1 ;
+        pos=mid;
         break;
     }
-    if(nums[mid]>target) j=mid-1;
-    else i=mid+1;
+    else if(nums[mid]<target) i=mid+1;
+    else j=mid-1;
 }
-if(flag==0) 
+if(pos==-1)
 {
     ans={-1 , -1};
     return ans;
 }
-int pos=mid;
-while(pos>=0 and nums[pos]==target)
-{
-    pos--;
-}
-ans.push_back(pos+1);
-pos=mid;
-while(pos<=nums.size()-1 and nums[pos]==target)
-{
-    pos++;
-}
-ans.push_back(pos-1);
+i=pos;
+while(i>=0 and nums[i]==target) --i;
+ans.push_back(i+1);
+i=pos;
+while(i<nums.size() and nums[i]==target) ++i;
+ans.push_back(i-1);
 return ans;
     }
 };
