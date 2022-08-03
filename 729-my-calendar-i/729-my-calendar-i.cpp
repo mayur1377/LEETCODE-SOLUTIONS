@@ -1,17 +1,17 @@
 class MyCalendar {
 public:
-vector<pair<int , int>>ans;
+vector<pair<int , int>>m;
     MyCalendar() {
         
     }
     
     bool book(int start, int end) {
-for(int i=0 ; i<ans.size() ; i++)
+for(auto i : m)
 {
-    if(!(end<=ans[i].first || start>=ans[i].second)) return 0;
+    if(start<i.second and end>i.first) return 0;
 }
-        ans.push_back({start , end});
-        return 1;
+m.push_back({start , end});
+return 1;
     }
 };
 
