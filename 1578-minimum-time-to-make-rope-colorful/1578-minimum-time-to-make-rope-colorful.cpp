@@ -8,13 +8,9 @@ for(int i=0; i<nums.size() ; i++)
     while(x<s.length() and s[i]==s[x])
     {
         sum+=nums[x];
-        maxi=max(maxi, nums[x]);
-        x++;
+        maxi=max(maxi, nums[x++]);
     }
-    if(x!=i)
-    {
-    count+=(sum-maxi);
-    }
+    if(x!=i) count+=(sum-maxi);
     i=x-1;
 }
         return count;
