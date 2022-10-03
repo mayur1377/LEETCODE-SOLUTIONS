@@ -6,16 +6,17 @@ for(int i=0; i<nums.size() ; i++)
 {
     int x=i;
     vector<int>temp;
+    int sum=0;
+    int maxi=0;
     while(x<s.length() and s[i]==s[x])
     {
-        temp.push_back(nums[x]);
+        sum+=nums[x];
+        maxi=max(maxi, nums[x]);
         x++;
     }
-    if(temp.size()!=1)
+    if(x!=i)
     {
-    int mini=*max_element(temp.begin() , temp.end());
-    int sum=accumulate(temp.begin() , temp.end() ,0);
-    count+=(sum-mini);
+    count+=(sum-maxi);
     }
     i=x-1;
     cout<<s[x-1];
