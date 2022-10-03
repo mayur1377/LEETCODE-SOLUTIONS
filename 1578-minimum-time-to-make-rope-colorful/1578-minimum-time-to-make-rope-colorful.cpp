@@ -4,10 +4,7 @@ public:
 int count=0;
 for(int i=0; i<nums.size() ; i++)
 {
-    int x=i;
-    vector<int>temp;
-    int sum=0;
-    int maxi=0;
+    int x=i , sum=0 , maxi=0;
     while(x<s.length() and s[i]==s[x])
     {
         sum+=nums[x];
@@ -19,7 +16,6 @@ for(int i=0; i<nums.size() ; i++)
     count+=(sum-maxi);
     }
     i=x-1;
-    cout<<s[x-1];
 }
         return count;
     }
