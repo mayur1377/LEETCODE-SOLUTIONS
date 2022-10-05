@@ -56,7 +56,6 @@ while(s.size())
         if(current->right) s.push(current->right);
     }
 }
-if(level==depth)return head;
 return head;
     }
 };
