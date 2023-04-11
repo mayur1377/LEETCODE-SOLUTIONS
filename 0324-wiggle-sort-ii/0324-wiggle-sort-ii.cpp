@@ -1,16 +1,21 @@
 class Solution {
 public:
     void wiggleSort(vector<int>& nums) {
-vector<int>temp=nums;
-sort(temp.begin() , temp.end());
-int k=nums.size()-1;
-for(int i=1 ; i<nums.size() ; i+=2)
+priority_queue<int>p;
+for(auto i : nums) p.push(i);
+int i=1;
+while(i<nums.size())
 {
-    nums[i]=temp[k--];
+    nums[i]=p.top();
+    p.pop();
+    i+=2;
 }
-for(int i=0 ; i<nums.size()  ; i+=2)
+i=0;
+while(i<nums.size())
 {
-    nums[i]=temp[k--];
+    nums[i]=p.top();
+    p.pop();
+    i+=2;
 }
     }
 };
