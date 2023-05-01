@@ -1,36 +1,44 @@
 class Solution {
 public:
-    bool canFinish(int n, vector<vector<int>>& p) {
-vector<int>adj[n];
-for(auto i : p)
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+// if(prerequisites.size()==0 or numCourses==0) return 1;
+vector<int>adj[numCourses];
+for(auto i : prerequisites)
 {
     adj[i[1]].push_back(i[0]);
 }
-vector<int>in(n , 0);
-for(int i=0 ; i<n ; i++)
+vector<int>need(numCourses , 0);
+for(int i=0 ; i<numCourses ; i++)
 {
-    for(auto x : adj[i]) in[x]++;
+    for(auto x : adj[i]) need[x]++;
 }
+
 queue<int>q;
-int count=0;
-for(int i=0; i<n ; i++)
+for(int i=0 ; i<numCourses ; i++)
 {
-    if(in[i]==0) q.push(i);
+    if(need[i]==0) 
+    {
+        q.push(i);
+    }
 }
+int donecourses=0;
 while(q.size())
 {
-    count++;
-    int top=q.front();
+    int course=q.front();
     q.pop();
-    for(auto i : adj[top])
+    donecourses++;
+    // cout<<"in course : "<<course<<endl;
+    for(auto i : adj[course])
     {
-        in[i]--;
-        if(in[i]==0)
+        // cout<<"here";.
+        need[i]--;
+        if(need[i]==0)
         {
             q.push(i);
         }
     }
 }
-return count==n;
+cout<<donecourses;
+return donecourses==numCourses;
     }
 };
