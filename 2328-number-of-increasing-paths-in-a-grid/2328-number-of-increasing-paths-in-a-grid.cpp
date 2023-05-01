@@ -1,30 +1,21 @@
 class Solution {
 public:
-int dp[1001][1001];
-#define MOD 1000000007
-int help(vector<vector<int>>&matrix , int i , int j , int prev)
+int dp[1000][1000] = {} ,  mod = 1000000007;
+int  dfs(vector<vector<int>>&g , int i , int j , int prev)
 {
-    if(i<0 or i>=matrix.size() or j<0 or j>=matrix[0].size()) return 0;
-    if(prev>=matrix[i][j]) return 0;
-    if(dp[i][j]) return dp[i][j];
-    long long int a=help(matrix , i+1 , j , matrix[i][j]);
-    long long int b=help(matrix , i-1 , j , matrix[i][j]);
-    long long int c=help(matrix , i , j+1 , matrix[i][j]);
-    long long int d=help(matrix , i , j-1 , matrix[i][j]);
-    return dp[i][j]=(a+ b + c +d+1)%MOD;
+    if(i<0 or i>=g.size()  or j>=g[0].size() or g[i][j]<=prev) return 0;
+    if(dp[i][j]!=0) return dp[i][j];
+    return dp[i][j]=(1+dfs(g , i+1 , j , g[i][j]) + dfs(g , i-1 , j , g[i][j]) +dfs(g ,  i , j+1 , g[i][j]) + dfs(g ,  i , j-1 , g[i][j]))%mod;
 }
-    int countPaths(vector<vector<int>>& matrix) {
-long long int ans=0;
-for(int i=0 ; i<matrix.size() ; i++)
+    int countPaths(vector<vector<int>>& g) {
+int ans=0,  m=g.size() ,  n=g[0].size();
+for(int i=0 ; i<m ; i++)
 {
-    for(int j=0 ; j<matrix[0].size() ; j++)
+    for(int j=0 ; j<n ; j++)
     {
-        ans=ans+help(matrix , i , j , 0);
-        ans%=MOD;
+        ans=(ans+dfs(g ,  i , j , -1))%mod;
     }
 }
         return ans;
-// for(auto i : m) sum+=i.second;
-// return sum;
     }
 };
