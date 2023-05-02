@@ -2,7 +2,7 @@ class Solution {
 public:
 #define MOD 1000000007
 unordered_map<string , int>m;
-long help(int n , char i )
+long help(long n , char i )
 {
     if(n==0)
     {
