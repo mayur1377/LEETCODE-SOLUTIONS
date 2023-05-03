@@ -5,30 +5,29 @@ using namespace std;
 
 // } Driver Code Ends
 //User function Template for C++
+
 class Solution {
-  private : 
-  void dfs(vector<int>&visited , vector<int>a[] , int node)
-  {
-      if(visited[node]==1) return ;
-      visited[node]=1;
-      
-      for(auto i : a[node])
-      {
-          if(visited[i]==0)
-          {
-              dfs(visited , a , i);
-          }
-      }
-  }
   public:
+    void dfs(vector<int>&visited , vector<int>a[] , int node)
+    {
+        if(visited[node]==1) return ;
+        visited[node]=1;
+        
+        for(auto i : a[node])
+        {
+            if(visited[i]==0)
+            {
+                dfs(visited , a , i);
+            }
+        }
+    }
     int numProvinces(vector<vector<int>> adj, int V) {
     vector<int>a[V];
-    int count=0;
-    for(int i=0; i<V ; i++)
+    for(int i=0 ; i<adj.size() ; i++)
     {
-        for(int j=0 ; j<V ; j++)
+        for(int j=0 ; j<adj[0].size() ; j++)
         {
-            if(adj[i][j]==1 and i!=j)
+            if(i!=j and adj[i][j]==1)
             {
                 a[i].push_back(j);
                 a[j].push_back(i);
@@ -36,16 +35,16 @@ class Solution {
         }
     }
     vector<int>visited(V , 0);
-    for(int i=0 ; i<visited.size() ; i++)
+    int ans=0;
+    for(int i=0 ; i<V ; i++)
     {
         if(visited[i]==0)
         {
-            count++;
+            ans++;
             dfs(visited , a , i);
         }
     }
-    return count;
-    
+    return ans;
     }
 };
 
