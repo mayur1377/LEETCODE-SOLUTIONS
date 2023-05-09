@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/filter-elements-from-array/">2634. Filter Elements from Array</a></h2><h3>Easy</h3><hr><div><p>Write a function that takes an input array of integers&nbsp;<code>arr</code>&nbsp;and a filtering&nbsp;function&nbsp;<code>fn</code>&nbsp;and returns a new array with a fewer or equal number of elements.</p>
+<h2><a href="https://leetcode.com/problems/filter-elements-from-array/">2634. Filter Elements from Array</a></h2><h3>Easy</h3><hr><div><p>Given an integer array&nbsp;<code>arr</code>&nbsp;and a filtering&nbsp;function&nbsp;<code>fn</code>,&nbsp;return&nbsp;a new array with a fewer or equal number of elements.</p>
 
 <p>The returned array should only contain elements where&nbsp;<code>fn(arr[i],&nbsp;i)</code>&nbsp;evaluated to a truthy value.</p>
 
