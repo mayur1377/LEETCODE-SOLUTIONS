@@ -9,6 +9,6 @@ while(low<=high)
     if(letters[mid]>target) high=mid-1;
     else low=mid+1;
 }
-        return letters[low%letters.size()];
+        return letters[(low%letters.size()-1)+1];
     }
 };
