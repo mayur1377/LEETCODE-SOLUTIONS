@@ -4,15 +4,17 @@ public:
 int ans=INT_MAX;
 int sum=0;
 int left=0;
-for(int i=0; i<nums.size() ; i++)
+for(int i=0 ; i<nums.size() ; i++)
 {
     sum+=nums[i];
     while(sum>=target)
     {
-        ans=min(ans , i-left+1);
-        sum-=nums[left++];
+        // cout<<sum<<" "<<ans<<" ";
+        ans=min(ans, i-left+1);
+        sum-=nums[left];
+        left++;
     }
 }
-        return ans==INT_MAX?0:ans;
+return ans==INT_MAX?0:ans;
     }
 };
