@@ -1,28 +1,31 @@
 class Solution {
 public:
-bool ispalin(string s , int i , int x)
+bool isplain(string s , int i , int j)
 {
-    while(i<=x)
+    while(i<=j)
     {
-        if(s[i]!=s[x]) return 0;
-        i++;
-        x--;
+        if(s[i]!=s[j]) return 0;
+        else 
+        {
+            i++;
+            j--;
+        }
     }
     return 1;
 }
-void help(string s , vector<vector<string>>&ans , vector<string>temp , int i)
+void help(string s , int i , vector<vector<string>>&ans , vector<string>&temp)
 {
     if(i==s.size())
     {
         ans.push_back(temp);
-        return ;
     }
-    for(int x=i ; x<s.size() ; x++)
+    for(int ind=i ; ind<s.size() ; ind++)
     {
-        if(ispalin(s , i , x))
+        if(isplain(s , i , ind ))
         {
-            temp.push_back(s.substr(i , x-i+1));
-            help(s , ans , temp , x+1);
+            string curr=s.substr(i , ind-i+1 );
+            temp.push_back(curr);
+            help(s , ind+1 , ans , temp);
             temp.pop_back();
         }
     }
@@ -30,7 +33,7 @@ void help(string s , vector<vector<string>>&ans , vector<string>temp , int i)
     vector<vector<string>> partition(string s) {
 vector<vector<string>>ans;
 vector<string>temp;
-help(s , ans , temp , 0);
+help(s  , 0 , ans , temp);
 return ans;
     }
 };
